@@ -1,15 +1,23 @@
 import React from "react";
+import { useState } from "react";
 import * as L from "leaflet";
 
 import { MapContainer, TileLayer} from "react-leaflet";
 import { Popup, Marker } from "react-leaflet";
 
-import {logo} from './images.js'
+import {logo,popupPhoto} from './images.js'
+
+import {addressIcon, phoneIcon } from "./images.js";
+
+
 
 import "./App.css";
+import Modal from "./Modal.jsx";
+
 
 
 function App() {
+  //data -> hash map
   const BouldPos = new Map();
   BouldPos.set("Cube", [
     1,
@@ -23,11 +31,12 @@ function App() {
       [9, 23],
       [9, 23],
     ],
-    "798650096",
+    "798 650 096",
     "https://cubeboulder.com",
     logo[0],
-    [60, 40]
-   
+    [60, 40],
+    popupPhoto[0],
+    "Centralna 41A, 31-586 Kraków"
   ]);
   BouldPos.set("Avatar-Sikorki", [
     2,
@@ -41,10 +50,12 @@ function App() {
       [9, 21],
       [9, 21],
     ],
-    "733434332",
+    "733 434 332",
     "https://myavatar.pl/avatar-centrala-ruchu",
     logo[2],
-    [60, 40]
+    [60, 40],
+    popupPhoto[2],
+    "Sikorki 21A, 31-589 Kraków",
   ]);
   BouldPos.set("Forteca-Ludowa", [
     3,
@@ -58,10 +69,12 @@ function App() {
       [10, 23],
       [10, 23],
     ],
-    "512631621",
+    "512 631 621",
     "http://cwf.pl/",
     logo[3],
     [50, 50],
+    popupPhoto[3],
+    "Ludowa 6, 30-544 Kraków",
   ]);
   BouldPos.set("Forteca-Racławicka", [
     4,
@@ -75,10 +88,12 @@ function App() {
       [10, 22],
       [10, 22],
     ],
-    "509228998",
+    "509 228 998",
     "http://cwf.pl/",
     logo[3],
     [50, 50],
+    popupPhoto[3],
+    "Racławicka 60, 30-017 Kraków"
   ]);
   BouldPos.set("Mood", [
     5,
@@ -92,10 +107,12 @@ function App() {
       [9, 23],
       [9, 23],
     ],
-    "780134474",
+    "780 134 474",
     "https://hellomood.pl/",
     logo[1],
     [50, 40],
+    popupPhoto[1],
+    "Klimeckiego 14B, 30-706 Kraków"
   ]);
   BouldPos.set("Bronx", [
     6,
@@ -109,10 +126,12 @@ function App() {
       [10, 23],
       [10, 22],
     ],
-    "122222243",
+    "12 222 22 43",
     "http://bronx.com.pl/",
     logo[4],
-    [40, 40]
+    [40, 40],
+    popupPhoto[4],
+    "Ojcowska 166A, 31-344 Kraków"
   ]);
 
 
@@ -123,11 +142,23 @@ function App() {
     });
   };
 
+  const [openImage, setOpenImage] = useState(false);
+  const [urlImage, setUrlImage] = useState(null);
+
+  function createPopupPhoto(url) {
+    return (<img onClick={() => {
+      setOpenImage(true);
+      setUrlImage(url);}
+      }
+      src={url} alt="Climbing Wall" className="pointer w100"/>)
+  }
+
+
   const iterator = BouldPos.keys();
-  // console.log(iterator);
 
   const markersXY = [...BouldPos.values()];
-)
+
+
   return (
     <MapContainer
       center={{ lat: 50.06611, lng: 19.95207 }}
@@ -140,24 +171,42 @@ function App() {
       />
       
       {markersXY.map((item) => {
-        return (
+        return (  
+          <div>       
           <Marker key={item[0]} position={item[1]} icon={createIcon(item[5], item[6])}>
-            <Popup> 
+            <Popup className="popup"> 
             <h3>{iterator.next().value}</h3>
-            <div>
-              <p>Godziny otwarcia</p>
-              <p>Poniedziałek: {item[2][0][0]}-{item[2][0][1]}</p>
-              <p>Wtorek: {item[2][1][0]}-{item[2][1][1]}</p>
-              <p>Środa: {item[2][2][0]}-{item[2][2][1]}</p>
-              <p>Czwartek: {item[2][3][0]}-{item[2][3][1]}</p>
-              <p>Piątek: {item[2][4][0]}-{item[2][4][1]}</p>
-              <p>Sobota: {item[2][5][0]}-{item[2][5][1]}</p>
-              <p>Niedziela: {item[2][6][0]}-{item[2][6][1]}</p>
+            <div className="popupWrapper">
+              <div className="popupText">
+                <p> <b>Godziny otwarcia</b></p>
+                
+                <p>Poniedziałek: <b>{item[2][0][0]}-{item[2][0][1]}</b></p>
+                <p>Wtorek:<b> {item[2][1][0]}-{item[2][1][1]}</b></p>
+                <p>Środa: <b> {item[2][2][0]}-{item[2][2][1]}</b></p>
+                <p>Czwartek: <b>{item[2][3][0]}-{item[2][3][1]}</b></p>
+                <p>Piątek: <b> {item[2][4][0]}-{item[2][4][1]}</b></p>
+                <p>Sobota: <b>{item[2][5][0]}-{item[2][5][1]}</b></p>
+                <p>Niedziela: <b> {item[2][6][0]}-{item[2][6][1]}</b></p>
+                
+                <p className= 'flex-ac-jc'>
+                  <img className='addressIcon' src={addressIcon} alt="Address icon"/>
+                  <span >{item[8]}</span>
+                </p>
+                <p className="flex-ac">
+                  <img className='phoneIcon' src={phoneIcon}  alt="Phone icon"/> 
+                  <span>{item[3]}</span>
+                </p> 
+              </div>
+              <div className='popupImage'>
+              {createPopupPhoto(item[7])}
+              </div>
             </div>
             </Popup>
           </Marker>
+      </div>
         );
       })}
+      <Modal open={openImage} onClose={() => {setOpenImage(false)}} url = {urlImage}/>
     </MapContainer>
   );
 }
