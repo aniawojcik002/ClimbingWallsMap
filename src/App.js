@@ -17,7 +17,8 @@ import Modal from "./Modal.jsx";
 
 
 function App() {
-  //data -> hash map
+
+  //data of climbing walls in Cracow -> hash map
   const BouldPos = new Map();
   BouldPos.set("Cube", [
     1,
@@ -133,18 +134,25 @@ function App() {
     popupPhoto[4],
     "Ojcowska 166A, 31-344 Kraków"
   ]);
+  
+  //variables for markers
+  const markersXY = [...BouldPos.values()];
+  const iterator = BouldPos.keys();
+
+  //states for markers
+  const [openImage, setOpenImage] = useState(false);
+  const [urlImage, setUrlImage] = useState(null);
 
 
+  //function which create icon for popup marker
   function createIcon(url, size) {
     return new L.Icon ({
       iconUrl: url,
       iconSize: size,
     });
   };
-
-  const [openImage, setOpenImage] = useState(false);
-  const [urlImage, setUrlImage] = useState(null);
-
+  
+  //function which automates creating photo for each popup
   function createPopupPhoto(url) {
     return (<img onClick={() => {
       setOpenImage(true);
@@ -152,11 +160,6 @@ function App() {
       }
       src={url} alt="Climbing Wall" className="pointer w100"/>)
   }
-
-
-  const iterator = BouldPos.keys();
-
-  const markersXY = [...BouldPos.values()];
 
 
   return (
@@ -170,6 +173,7 @@ function App() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       
+      {/* map function which creates marker for every climbing wall */}
       {markersXY.map((item) => {
         return (  
           <div>       
