@@ -11,6 +11,7 @@ import { addressIcon, phoneIcon } from "./images.js";
 
 import "./App.css";
 import Modal from "./Modal.jsx";
+import Header from "./Header.jsx";
 
 function App() {
   //data of climbing walls in Cracow -> hash map
@@ -138,7 +139,6 @@ function App() {
     let status = "";
     status = "Error";
     function success(position) {
-      
       setCoordsUser([position.coords.latitude, position.coords.longitude]);
       // console.log("success");
     }
@@ -192,118 +192,123 @@ function App() {
   }
 
   return (
-    <MapContainer
-      center={{ lat: 50.06611, lng: 19.95207 }}
-      zoom={13}
-      scrollWheelZoom={false}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <>
+      <Header>Header</Header>
+      <MapContainer
+        center={{ lat: 50.06611, lng: 19.95207 }}
+        zoom={13}
+        scrollWheelZoom={false}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
 
-      {/* map function which creates marker for every climbing wall */}
-      {markersXY.map((item) => {
-        return (
-          <div>
-            <Marker
-              key={item[0]}
-              position={item[1]}
-              icon={createIcon(item[5], item[6])}
-            >
-              <Popup className="popup">
-                <h3>{iterator.next().value}</h3>
-                <div className="popupWrapper">
-                  <div className="popupText">
-                    <p>
-                      {" "}
-                      <b>Godziny otwarcia</b>
-                    </p>
+        {/* map function which creates marker for every climbing wall */}
+        {markersXY.map((item) => {
+          return (
+            <div>
+              <Marker
+                key={item[0]}
+                position={item[1]}
+                icon={createIcon(item[5], item[6])}
+              >
+                <Popup className="popup">
+                  <h3>{iterator.next().value}</h3>
+                  <div className="popupWrapper">
+                    <div className="popupText">
+                      <p>
+                        {" "}
+                        <b>Godziny otwarcia</b>
+                      </p>
 
-                    <p>
-                      Poniedziałek:{" "}
-                      <b>
-                        {item[2][0][0]}-{item[2][0][1]}
-                      </b>
-                    </p>
-                    <p>
-                      Wtorek:
-                      <b>
-                        {" "}
-                        {item[2][1][0]}-{item[2][1][1]}
-                      </b>
-                    </p>
-                    <p>
-                      Środa:{" "}
-                      <b>
-                        {" "}
-                        {item[2][2][0]}-{item[2][2][1]}
-                      </b>
-                    </p>
-                    <p>
-                      Czwartek:{" "}
-                      <b>
-                        {item[2][3][0]}-{item[2][3][1]}
-                      </b>
-                    </p>
-                    <p>
-                      Piątek:{" "}
-                      <b>
-                        {" "}
-                        {item[2][4][0]}-{item[2][4][1]}
-                      </b>
-                    </p>
-                    <p>
-                      Sobota:{" "}
-                      <b>
-                        {item[2][5][0]}-{item[2][5][1]}
-                      </b>
-                    </p>
-                    <p>
-                      Niedziela:{" "}
-                      <b>
-                        {" "}
-                        {item[2][6][0]}-{item[2][6][1]}
-                      </b>
-                    </p>
+                      <p>
+                        Poniedziałek:{" "}
+                        <b>
+                          {item[2][0][0]}-{item[2][0][1]}
+                        </b>
+                      </p>
+                      <p>
+                        Wtorek:
+                        <b>
+                          {" "}
+                          {item[2][1][0]}-{item[2][1][1]}
+                        </b>
+                      </p>
+                      <p>
+                        Środa:{" "}
+                        <b>
+                          {" "}
+                          {item[2][2][0]}-{item[2][2][1]}
+                        </b>
+                      </p>
+                      <p>
+                        Czwartek:{" "}
+                        <b>
+                          {item[2][3][0]}-{item[2][3][1]}
+                        </b>
+                      </p>
+                      <p>
+                        Piątek:{" "}
+                        <b>
+                          {" "}
+                          {item[2][4][0]}-{item[2][4][1]}
+                        </b>
+                      </p>
+                      <p>
+                        Sobota:{" "}
+                        <b>
+                          {item[2][5][0]}-{item[2][5][1]}
+                        </b>
+                      </p>
+                      <p>
+                        Niedziela:{" "}
+                        <b>
+                          {" "}
+                          {item[2][6][0]}-{item[2][6][1]}
+                        </b>
+                      </p>
 
-                    <p className="flex-ac-jc">
-                      <img
-                        className="addressIcon"
-                        src={addressIcon}
-                        alt="Address icon"
-                      />
-                      <span>{item[8]}</span>
-                    </p>
-                    <p className="flex-ac">
-                      <img
-                        className="phoneIcon"
-                        src={phoneIcon}
-                        alt="Phone icon"
-                      />
-                      <span>{item[3]}</span>
-                    </p>
+                      <p className="flex-ac-jc">
+                        <img
+                          className="addressIcon"
+                          src={addressIcon}
+                          alt="Address icon"
+                        />
+                        <span>{item[8]}</span>
+                      </p>
+                      <p className="flex-ac">
+                        <img
+                          className="phoneIcon"
+                          src={phoneIcon}
+                          alt="Phone icon"
+                        />
+                        <span>{item[3]}</span>
+                      </p>
+                    </div>
+                    <div className="popupImage">
+                      {createPopupPhoto(item[7])}
+                    </div>
                   </div>
-                  <div className="popupImage">{createPopupPhoto(item[7])}</div>
-                </div>
-              </Popup>
-            </Marker>
-            {/* {userPosition()} */}
-          </div>
-        );
-      })}
-      <Modal
-        open={openImage}
-        onClose={() => {
-          setOpenImage(false);
-        }}
-        url={urlImage}
-      />
-      <Marker key={`marker-1`} position={coordsUser}></Marker>
-      {/* {userLocationRef !== 'null' && <Marker  key={`marker-1`} position={userLocationRef}>
+                </Popup>
+              </Marker>
+              {/* {userPosition()} */}
+            </div>
+          );
+        })}
+        <Modal
+          open={openImage}
+          onClose={() => {
+            setOpenImage(false);
+          }}
+          url={urlImage}
+        />
+        <Marker key={`marker-1`} position={coordsUser}></Marker>
+        {/* {userLocationRef !== 'null' && <Marker  key={`marker-1`} position={userLocationRef}>
         <Popup>lalala</Popup>
       </Marker>} */}
-    </MapContainer>
+      </MapContainer>
+    </>
   );
 }
 
