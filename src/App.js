@@ -137,10 +137,10 @@ function App() {
   const [coordsUser, setCoordsUser] = useState([51, 20]);
   function locateMarker() {
     let status = "";
-    status = "Error";
+    
     function success(position) {
       setCoordsUser([position.coords.latitude, position.coords.longitude]);
-      // console.log("success");
+
     }
 
     function error() {
@@ -193,7 +193,7 @@ function App() {
 
   return (
     <>
-      <Header>Header</Header>
+      <Header/>
       <MapContainer
         center={{ lat: 50.06611, lng: 19.95207 }}
         zoom={13}
