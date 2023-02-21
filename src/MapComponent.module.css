@@ -1,0 +1,39 @@
+/*marker and popup styling*/
+.popup {
+  min-width: 300px;
+}
+
+.popupWrapper {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+.popupPhoto {
+  width: 100%;
+  cursor: pointer;
+}
+p .address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+p .phone {
+  display: flex;
+  align-items: center;
+}
+
+.popupText {
+  font-size: 1.1rem;
+  line-height: 0.3rem;
+}
+
+.phoneIcon,
+.addressIcon {
+  width: 15px;
+}
+
+.phoneIcon {
+  align-self: flex-start;
+  margin-right: 3px;
+}

@@ -12,56 +12,9 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
 /*mandatory leaflet container*/
 .leaflet-container {
   width: 100vw;
   height: 95vh;
-}
-/* helper classes */ 
-.flex-ac-jc {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex-ac {
-  display: flex;
-  align-items: center;
-}
-
-.w100 {
-  width: 100%;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
-/*marker and popup styling*/
-.popup {
-  min-width: 300px;
-}
-
-.popupWrapper {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.popupText {
-  font-size: 1.1rem;
-  line-height: 0.3rem;
-}
-
-.phoneIcon, .addressIcon {
-  width: 15px;
-}
-
-.phoneIcon {
-  align-self: flex-start; 
-
-  margin-right: 3px;
 }
 
