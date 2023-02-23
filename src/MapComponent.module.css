@@ -1,6 +1,7 @@
 /*marker and popup styling*/
 .popup {
   min-width: 300px;
+  font-family: 'Montserrat';
 }
 
 .popupWrapper {

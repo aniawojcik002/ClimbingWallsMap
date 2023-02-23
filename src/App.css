@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
 /*reset and basic settings*/
 * {
   padding: 0;
@@ -17,4 +19,6 @@ html {
   width: 100vw;
   height: 95vh;
 }
-
+body {
+  font-family: 'Montserrat';
+}
