@@ -17,14 +17,14 @@ const Login = () => {
               type="text"
               id="username"
               name="username"
-              autocomplete="username"
+              autoComplete="username"
               className={styles.username}
             ></input>
             <input
               placeholder="Password"
               type="password"
               id="pass"
-              autocomplete="current-password"
+              autoComplete="current-password"
               name="password"
               className={styles.password}
             ></input>
