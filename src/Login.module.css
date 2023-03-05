@@ -47,7 +47,7 @@ input, input[type="text"]:placeholder-shown, input[type="password"]:placeholder-
 }
 
 .loginButton {
-  margin-top: 1rem;
+  margin: 1rem 0;
   padding: 1rem;
   width: 100%;
   border: none;

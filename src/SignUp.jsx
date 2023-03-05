@@ -28,7 +28,7 @@ const SignUp = () => {
 
   return (
       <div className={styles.mainWrapper}>
-      <div className={styles.wrapper}>
+      <form onSubmit={signUp} className={styles.wrapper}>
       <Link to="/Login" className={styles.prevPage}>← Wróc do strony logowania</Link>
         <div className={styles.inputWrapper}>
           <input
@@ -38,7 +38,8 @@ const SignUp = () => {
             name="username"
             autoComplete="username"
             className={styles.username}
-            required
+            value={email}
+            onChange={emailHandler}
           ></input>
           <input
             placeholder="Password"
@@ -47,15 +48,16 @@ const SignUp = () => {
             autoComplete="current-password"
             name="password"
             className={styles.password}
-            minlength="8"
-            required
+            minLength="8"
+            value={password}
+            onChange={passwordHandler}
           ></input>
           <input
             placeholder="Repeat password"
             type="password"
             id="pass"
             autoComplete="current-password"
-            minlength="8"
+            minLength="8"
             name="password"
             className={styles.password}
             required
@@ -65,12 +67,11 @@ const SignUp = () => {
           <button
             className={styles.loginButton}
             type="submit"
-            disabled="disabled"
           >
             Sign Up
           </button>
         </div> 
-        </div>
+        </form>
       </div>
   );
 };
