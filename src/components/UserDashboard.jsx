@@ -1,7 +1,7 @@
 import React from "react";
-import { UserAuth } from "./context/AuthContext";
+import { UserAuth } from "../context/AuthContext";
 
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
   const { logout } = UserAuth();
@@ -9,11 +9,11 @@ const UserDashboard = () => {
   const handleSignOut = async () => {
     try {
       await logout();
-      navigate('/');
-    } catch (e)  {
-      console.log(e.message)
+      navigate("/");
+    } catch (e) {
+      console.log(e.message);
     }
-  }
+  };
 
   return (
     <>

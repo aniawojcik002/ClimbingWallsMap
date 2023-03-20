@@ -6,9 +6,9 @@ import * as L from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { Popup, Marker } from "react-leaflet";
 
-import { logo, popupPhoto } from "./images.js";
+import { logo, popupPhoto } from "../images.js";
 
-import { addressIcon, phoneIcon } from "./images.js";
+import { addressIcon, phoneIcon } from "../images.js";
 
 import styles from "./MapComponent.module.css";
 

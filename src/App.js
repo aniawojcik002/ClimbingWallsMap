@@ -4,11 +4,11 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
-import MapComponent from "./MapComponent";
-import Header from "./Header";
-import Login from "./Login";
-import SignUp from "./SignUp";
-import UserDashboard from "./UserDashboard";
+import MapComponent from "./components/MapComponent";
+import Header from "./components/Header";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import UserDashboard from "./components/UserDashboard";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
