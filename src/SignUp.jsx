@@ -1,15 +1,17 @@
 import React, {useState} from "react";
 
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 import styles from "./SignUp.module.css";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebase";
+import { UserAuth } from "./context/AuthContext";
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -18,18 +20,25 @@ const SignUp = () => {
     setPassword(e.target.value);
   }
 
-  const signUp = (e) => {
+  const {createUser} = UserAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log(userCredential)
-    }).catch((error) => console.log(error))
+    setError('')
+    try {
+      await createUser(email, password)
+      navigate('/userDashboard')
+
+    } catch (e) {
+      setError(e.message)
+      console.log(`error is ${error}`)
+    }
   }
 
   return (
       <div className={styles.mainWrapper}>
-      <form onSubmit={signUp} className={styles.wrapper}>
-      <Link to="/Login" className={styles.prevPage}>← Wróc do strony logowania</Link>
+      <form onSubmit={handleSubmit} className={styles.wrapper}>
+      <Link to="/login" className={styles.prevPage}>← Wróc do strony logowania</Link>
         <div className={styles.inputWrapper}>
           <input
             placeholder="Username"
