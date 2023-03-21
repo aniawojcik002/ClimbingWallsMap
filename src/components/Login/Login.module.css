@@ -34,15 +34,13 @@ input {
   border: none;
   border-bottom: 1px solid rgba(125, 125, 125, 0.7);
   padding:1rem;
-  font-size: 1.1rem;
-  font-family: 'Montserrat';
-  
+  font-size: 1.1rem;  
 }
-input[type="password"]::placeholder, input[type="text"]::placeholder {
+input[type="email"]::placeholder, input[type="password"]::placeholder {
   color: #92929280;
 }
 
-input, input[type="text"]:placeholder-shown, input[type="password"]:placeholder-shown {
+input, input[type="email"]:placeholder-shown, input[type="password"]:placeholder-shown {
   padding-bottom: .5rem;
 }
 

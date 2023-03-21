@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 
-import { UserAuth } from "../context/AuthContext";
+import { UserAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -45,11 +45,11 @@ const Login = () => {
         </div>
         <div className={styles.inputWrapper}>
           <input
-            placeholder="Username"
-            type="text"
-            id="username"
-            name="username"
-            autoComplete="username"
+            placeholder="Email"
+            type="email"
+            id="email"
+            name="email"
+            autoComplete="email"
             className={styles.username}
             value={email}
             onChange={emailHandler}
