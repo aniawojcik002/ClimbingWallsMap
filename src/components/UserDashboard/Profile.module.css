@@ -1,0 +1,15 @@
+.userAvatar img{
+  width: 50px;
+}
+.profileInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.userInfo {
+
+}
+.userBoulder {
+  display: flex;
+  flex-direction: column;
+}

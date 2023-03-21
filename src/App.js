@@ -4,13 +4,14 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
-import MapComponent from "./components/MapComponent";
-import Header from "./components/Header";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
-import UserDashboard from "./components/UserDashboard";
+import MapComponent from "./components/Map/MapComponent";
+import Header from "./components/Header/Header";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
+import UserDashboard from "./components/UserDashboard/UserDashboard";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import ClientAccount from "./components/UserDashboard/ClientAccount";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/map" element={<MapComponent />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/client" element={<ClientAccount />} />
+
           <Route
             path="/userDashboard"
             element={

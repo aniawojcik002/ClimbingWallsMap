@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
-import styles from "./Login.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { UserAuth } from "../context/AuthContext";
+import styles from "./SignUp.module.css";
 
-const Login = () => {
+import { UserAuth } from "../../context/AuthContext";
+
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -20,13 +20,13 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const { login } = UserAuth();
+  const { createUser } = UserAuth();
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      await login(email, password);
+      await createUser(email, password);
       navigate("/userDashboard");
     } catch (e) {
       setError(e.message);
@@ -36,13 +36,10 @@ const Login = () => {
 
   return (
     <div className={styles.mainWrapper}>
-      <form onSubmit={handleLogin} className={styles.wrapper}>
-        <div className={styles.textWrapper}>
-          <h3 className={styles.welcomeText}>Welcome back!</h3>
-          <h4 className={styles.secondaryText}>
-            Welcome back! Please enter your details.
-          </h4>
-        </div>
+      <form onSubmit={handleSubmit} className={styles.wrapper}>
+        <Link to="/login" className={styles.prevPage}>
+          ← Wróc do strony logowania
+        </Link>
         <div className={styles.inputWrapper}>
           <input
             placeholder="Username"
@@ -61,20 +58,29 @@ const Login = () => {
             autoComplete="current-password"
             name="password"
             className={styles.password}
+            minLength="8"
             value={password}
             onChange={passwordHandler}
+          ></input>
+          <input
+            placeholder="Repeat password"
+            type="password"
+            id="pass"
+            autoComplete="current-password"
+            minLength="8"
+            name="password"
+            className={styles.password}
+            required
           ></input>
         </div>
         <div>
           <button className={styles.loginButton} type="submit">
-            Log in
+            Sign Up
           </button>
-          <p>Don't have an account?</p>
-          <Link to="/signup"> Register here </Link>
         </div>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
