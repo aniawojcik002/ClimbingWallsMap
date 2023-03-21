@@ -42,12 +42,11 @@ const SignUp = () => {
         </Link>
         <div className={styles.inputWrapper}>
           <input
-            placeholder="Username"
-            type="text"
-            id="username"
-            name="username"
-            autoComplete="username"
-            className={styles.username}
+            placeholder="Email"
+            type="email"
+            id="email"
+            name="email"
+            autoComplete="email"
             value={email}
             onChange={emailHandler}
           ></input>
@@ -57,7 +56,6 @@ const SignUp = () => {
             id="pass"
             autoComplete="current-password"
             name="password"
-            className={styles.password}
             minLength="8"
             value={password}
             onChange={passwordHandler}

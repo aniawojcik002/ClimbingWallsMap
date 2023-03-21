@@ -45,11 +45,11 @@ const Login = () => {
         </div>
         <div className={styles.inputWrapper}>
           <input
-            placeholder="Username"
-            type="text"
-            id="username"
-            name="username"
-            autoComplete="username"
+            placeholder="Email"
+            type="email"
+            id="email"
+            name="email"
+            autoComplete="email"
             className={styles.username}
             value={email}
             onChange={emailHandler}
